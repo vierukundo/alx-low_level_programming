@@ -1,11 +1,12 @@
 #include <stdio.h>
 
-/*puts function with string */
-
+/**
+ * main - Entry point
+ * program that prints string with puts function
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
-	char myString[] = "\"Programming is like building a multilingual puzzle";
-	puts(myString);
-
+	puts("\"Programming is like building a multilingual puzzle");
 	return (0);
 }
