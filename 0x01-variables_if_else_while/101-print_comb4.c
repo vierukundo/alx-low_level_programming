@@ -24,8 +24,11 @@ int main(void)
 				putchar(i + '0');
 				putchar(d + '0');
 				putchar(c + '0');
-				putchar(',');
-				putchar(' ');
+				if (i < 7)
+				{
+					putchar(',');
+					putchar(' ');
+				}
 			}
 		}
 	}
