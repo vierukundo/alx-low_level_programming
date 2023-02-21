@@ -15,7 +15,13 @@ void times_table(void)
 			if (t <= 9)
 			{
 				_putchar(t + '0');
-				if (n < 9)
+				if (n < 9 && t <= 9)
+				{
+					_putchar(',');
+					_putchar(' ');
+					_putchar(' ');
+				}
+				else if (n < 9 && t > 9)
 				{
 					_putchar(',');
 					_putchar(' ');
