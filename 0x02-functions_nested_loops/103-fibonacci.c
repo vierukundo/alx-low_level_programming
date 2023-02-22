@@ -5,21 +5,20 @@
  */
 int main(void)
 {
-	long int i, n, m, next, sum;
+	int a, b, c, sum;
 
-	i = 1;
-	n = 2;
+	c = 0;
+	a = 1;
+	b = 2;
 	sum = 0;
-	for (m = 1; m <= 4000000; m++)
+	while (c <= 4000000)
 	{
-		if(i % 2 == 0)
-		{
-			sum += 1;
-		}
-		next = i + n;
-		i = n;
-		n = next;
+		c = a + b;
+		if (c % 2 == 0)
+			sum = sum + c;
+		a = b;
+		b = c;
 	}
-	printf("%lu\n", sum);
+	printf("%d\n", sum);
 	return (0);
 }
