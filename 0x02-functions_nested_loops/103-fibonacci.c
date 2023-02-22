@@ -9,14 +9,17 @@ int main(void)
 
 	i = 1;
 	n = 2;
-	next = i + n;
-	for (m = 3; m <= 4000000; m++)
+	sum = 0;
+	for (m = 1; m <= 4000000; m++)
 	{
+		if(i % 2 == 0)
+		{
+			sum += 1;
+		}
+		next = i + n;
 		i = n;
 		n = next;
-		next = i + n;
-		sum += next;
 	}
-	printf("%lu\n", sum + 3);
+	printf("%lu\n", sum);
 	return (0);
 }
