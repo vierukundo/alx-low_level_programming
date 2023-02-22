@@ -1,24 +1,24 @@
-#include <stdio.h>
+#include "main.h"
 /**
- * main - prints the sum of all the
+ * findSum - prints the sum of all the
  * multiples of 3 or 5 below 1024
- * @n: number
- * Return: 0 (Success)
+ * @a: multiple one
+ * @n: limit
+ * @b: multiple two
+ * Return: sum
  */
-int main(void)
+int findSum(int n, int a, int b)
 {
-	int n;
+	int sum = 0;
 
-	n = 0;
-	while (n < 1024)
+	int i;
+
+	for (i = 0; i < n; i++)
 	{
-		if ((n % 3 == 0) || (n % 10 == 0))
+		if (i % a == 0 || i % b == 0)
 		{
-			n += n;
+			sum += i;
 		}
-		n++;
 	}
-	printf("%d\n", n);
-	return (0);
+	return (sum);
 }
-
