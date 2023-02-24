@@ -5,22 +5,24 @@
  */
 int main(void)
 {
-	long int i, n, m, next;
+	unsigned long a, b, c, d;
 
-	i = 1;
-	n = 2;
-	next = i + n;
-	printf("%lu, ", i);
-	printf("%lu, ", n);
-	for (m = 0; m <= 98; m++)
+	a = 1;
+	b = 2;
+	c = 0;
+	for (d = 1; d <= 98; d++)
 	{
-		if (m == 98)
-			printf("%lu\n", next);
+		if (d != 98)
+		{
+			printf("%lu, ", a);
+			c = a + b;
+			a = b;
+			b = c;
+		}
 		else
-			printf("%lu, ", next);
-		i = n;
-		n = next;
-		next = i + n;
+		{
+			printf("%lu", a);
+		}
 	}
-	return (0);
+	printf("\n");
 }
