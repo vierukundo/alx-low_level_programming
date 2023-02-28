@@ -8,7 +8,7 @@
  */
 int _atoi(char *s)
 {
-	int sign = 1, number = 0, index = 0;
+	int sign = 0, number = 0, index = 0;
 
 	for (index = 0; s[index] != '\0'; index++)
 	{
@@ -20,7 +20,7 @@ int _atoi(char *s)
 		{
 			if (s[index] == '-')
 			{
-				sign = sign * -1;
+				sign = sign + 1;
 			}
 			else if (s[index] != ';')
 			{
@@ -32,6 +32,13 @@ int _atoi(char *s)
 			}
 		}
 	}
-	number = number * sign;
-	return (number);
+	if (sign % 2 == 0)
+	{
+		return (number);
+	}
+	else
+	{
+		number = -number;
+		return (number);
+	}
 }
