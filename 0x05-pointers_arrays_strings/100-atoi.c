@@ -12,9 +12,9 @@ int _atoi(char *s)
 
 	for (index = 0; s[index] != '\0'; index++)
 	{
-		if(s[index] >= '0' && s[index] <= '9')
+		if (s[index] >= '0' && s[index] <= '9')
 		{
-			number = number*10 + (s[index] - '0');
+			number = number * 10 + (s[index] - '0');
 		}
 		else
 		{
