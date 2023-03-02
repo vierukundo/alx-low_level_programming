@@ -2,7 +2,6 @@
 /**
  * print_number - function that prints an integer.
  * @n: integer to print
- * @m: unsigned integer
  * Return: void
  */
 void print_number(int n)
