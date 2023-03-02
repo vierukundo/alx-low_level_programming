@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * rev_string - reverse array
  * @n: integer params
@@ -25,7 +24,6 @@ void rev_string(char *n)
 		*(n + i) = temp;
 	}
 }
-
 /**
  * infinite_add - add 2 numbers together
  * @n1: text representation of 1st number to add
@@ -34,45 +32,49 @@ void rev_string(char *n)
  * @size_r: buffer size
  * Return: pointer to calling function
  */
-
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int overflow = 0, i = 0, j = 0, digits = 0;
-	int val1 = 0, val2 = 0, temp_tot = 0;
+	int  i = 0, j = 0, remainder = 0, m = 0;
 
-	while (*(n1 + i) != '\0')
+	int num1, num2, sum;
+
+	while (n1[i] != '\0')
+	{
 		i++;
-	while (*(n2 + j) != '\0')
+	}
+	while (n2[j] != '\0')
+	{
 		j++;
+	}
 	i--;
 	j--;
-	if (j >= size_r || i >= size_r)
+	if (i >= size_r || j >= size_r)
 		return (0);
-	while (j >= 0 || i >= 0 || overflow == 1)
+	while (i >= 0 || j >= 0 || remainder == 1)
 	{
 		if (i < 0)
-			val1 = 0;
+			num1 = 0;
 		else
-			val1 = *(n1 + i) - '0';
+			num1 = n1[i] - '0';
 		if (j < 0)
-			val2 = 0;
+			num2 = 0;
 		else
-			val2 = *(n2 + j) - '0';
-		temp_tot = val1 + val2 + overflow;
-		if (temp_tot >= 10)
-			overflow = 1;
+			num2 = n2[j] - '0';
+		sum = num1 + num2 + remainder;
+		if (sum >= 10)
+			remainder = 1;
 		else
-			overflow = 0;
-		if (digits >= (size_r - 1))
+			remainder = 0;
+		if (m >= (size_r - 1))
 			return (0);
-		*(r + digits) = (temp_tot % 10) + '0';
-		digits++;
-		j--;
+		r[m] = (sum % 10) + '0';
+		m++;
 		i--;
+		j--;
 	}
-	if (digits == size_r)
+	if (m == size_r)
 		return (0);
-	*(r + digits) = '\0';
+	r[m] = '\0';
 	rev_string(r);
 	return (r);
 }
