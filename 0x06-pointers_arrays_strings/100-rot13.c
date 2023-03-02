@@ -8,25 +8,18 @@ char *rot13(char *n)
 {
 	int i, j;
 
-	char s1[] = "ABCDEFGHIJKLMabcdefghijklm";
+	char s1[] = "ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz";
 
-	char s2[] = "NOPQRSTUVWXYZnopqrstuvwxyz";
-
-	char s3[] = "NOPQRSTUVWXYZnopqrstuvwxyz";
-
-	char s4[] = "ABCDEFGHIJKLMabcdefghijklm";
+	char s2[] = "NOPQRSTUVWXYZnopqrstuvwxyzABCDEFGHIJKLMabcdefghijklm";
 
 	for (i = 0; n[i] != '\0'; i++)
 	{
-		for (j = 0; j < 26; j++)
+		for (j = 0; j < 52; j++)
 		{
 			if (n[i] == s1[j])
 			{
 				n[i] = s2[j];
-			}
-			else if (n[i] == s3[j])
-			{
-				n[i] = s4[j];
+				break;
 			}
 		}
 	}
