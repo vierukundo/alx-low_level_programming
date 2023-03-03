@@ -10,7 +10,7 @@
 
 void print_buffer(char *b, int size)
 {
-	int i, j, s, l, n;
+	int i, j, s, l, n, c;
 
 	s = 0;
 	if (size % 10 != 0)
@@ -45,20 +45,31 @@ void print_buffer(char *b, int size)
 				}
 				else
 				{
-					printf("%s ", " ");
+					if (j == 6 || j == 9)
+					{
+						printf(" ");
+						printf(" ");
+					}
+					else
+					{
+						printf(" ");
+					}
 				}
 			}
-			if (j < 9)
+		}
+		for (c = 0; c < 10; c++)
+		{
+			if (c < 9)
 			{
-				if (b[j] >= 32 && b[j] < 127)
-					printf("%c ", b[j]);
+				if (b[(i * 10) + c] >= 32 && b[(i * 10) + c] < 127)
+					printf("%c", b[(i * 10) + c]);
 				else
 					printf("%s", ".");
 			}
 			else
 			{
-				if (b[j] >= 32 && b[j] < 127)
-					printf("%c", b[j]);
+				if (b[(i * 10) + c] >= 32 && b[(i * 10) + c] < 127)
+					printf("%c", b[(i * 10) + c]);
 				else
 					printf("%s", ".");
 			}
