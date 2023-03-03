@@ -10,71 +10,41 @@
 
 void print_buffer(char *b, int size)
 {
-	int i, j, s, l, n, c;
+	int o, j, i;
 
-	s = 0;
-	if (size % 10 != 0)
-		l = size / 10;
-	else
-		l = (size / 10) - 1;
+	o = 0;
+
 	if (size <= 0)
 	{
 		printf("\n");
 		return;
 	}
-	for (i = 0; i <= l; i++)
+	while (o < size)
 	{
-		n = 1;
-		printf("%08x: ", i * 10);
-		for (j = 0; j < 10; j++)
+		j = size - o < 10 ? size - o : 10;
+		printf("%08x: ", o);
+		for (i = 0; i < 10; i++)
 		{
-			if (size >= 10)
-			{
-				printf("%02x", b[(i * 10) + j++]);
-				printf("%02x ", b[(i * 10) + n]);
-				n += 2;
-			}
+			if (i < j)
+				printf("%02x", *(b + o + i));
 			else
+				printf("  ");
+			if (i % 2)
 			{
-				if (s < size)
-				{
-					printf("%02x", b[(i * 10) + s]);
-					printf("%02x ", b[(i * 10) + n]);
-					n += 2;
-					s += 2;
-				}
-				else
-				{
-					if (j == 6 || j == 9)
-					{
-						printf(" ");
-						printf(" ");
-					}
-					else
-					{
-						printf(" ");
-					}
-				}
+				printf(" ");
 			}
 		}
-		for (c = 0; c < 10; c++)
+		for (i = 0; i < j; i++)
 		{
-			if (c < 9)
+			int c = *(b + o + i);
+
+			if (c < 32 || c > 132)
 			{
-				if (b[(i * 10) + c] >= 32 && b[(i * 10) + c] < 127)
-					printf("%c", b[(i * 10) + c]);
-				else
-					printf("%s", ".");
+				c = '.';
 			}
-			else
-			{
-				if (b[(i * 10) + c] >= 32 && b[(i * 10) + c] < 127)
-					printf("%c", b[(i * 10) + c]);
-				else
-					printf("%s", ".");
-			}
+			printf("%c", c);
 		}
-		size -= 10;
 		printf("\n");
+		o += 10;
 	}
 }
