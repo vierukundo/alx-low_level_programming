@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * _memcpy - a function that copies memory area.
- * @deat: destination
+ * @dest: destination
  * @src: source
  * @n: number of bytes from src
  * Return: void
