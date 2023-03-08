@@ -14,6 +14,7 @@ int find_length(char *s)
  * isPal_or_Not - checks if string is pal
  * @s: string
  * @i: iterator
+ * @len: length of string
  * Return: 1 if true and 0 if false
  */
 int isPal_or_Not(char *s, int i, int len)
