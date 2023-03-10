@@ -17,9 +17,7 @@ int main(int argc, char **argv)
 		result = i * j;
 		printf("%d\n", result);
 	}
-	if (argc == 2)
-		printf ("%d\n", 0);
-	if (argc < 2)
+	if (argc <= 2)
 	{
 		printf("%s\n", "Error");
 		return (1);
