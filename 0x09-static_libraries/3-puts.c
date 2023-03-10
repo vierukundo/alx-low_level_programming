@@ -1,16 +1,14 @@
 #include "main.h"
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include<stdio.h>
 /**
- * _puts - function that prints a string, followed
- * by a new line, to stdout
- * @str: string
- * Return: void
+ * _puts - Entry point
+ *
+ * Return: Always 0 (Success)
  */
-void _puts(char *str)
+void _puts(char *s)
 {
-	while (*str != '\0')
-	{
-		printf("%c", *str);
-		str++;
-	}
-	printf("\n");
+	puts(s);
 }
