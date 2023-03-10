@@ -9,7 +9,7 @@
  */
 int check_character(char *s)
 {
-	long unsigned int i;
+	unsigned int i;
 
 	for (i = 0; i < strlen(s); i++)
 	{
@@ -22,7 +22,7 @@ int check_character(char *s)
  * main - main
  * @argc: count arg
  * @argv: array of strings
- * Return 0 otherwise 1
+ * Return: 0 otherwise 1
  */
 int main(int argc, char **argv)
 {
