@@ -1,4 +1,4 @@
 #!/bin/bash
 git add .
-git commit -m "C - argc and argv"
+git commit -m "C - static library"
 git push
