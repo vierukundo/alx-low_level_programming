@@ -22,7 +22,12 @@ int **alloc_grid(int width, int height)
 	for (h = 0; h < height; h++)
 	{
 		if (ptr[h] == NULL)
+		{
+			for (h = 0; h < height; h++)
+				free(ptr[h]);
+			free(ptr);
 			return (NULL);
+		}
 	}
 	for (h = 0; h < height; h++)
 	{
@@ -32,20 +37,4 @@ int **alloc_grid(int width, int height)
 		}
 	}
 	return (ptr);
-}
-/**
- * freeArray - free memory
- * @ptr: 2D array
- * @width: colums
- * @height: rows
- * Return: nothing
- */
-void freeArray(int **ptr, int width, int height)
-{
-	int h;
-
-	alloc_grid(width, height);
-	for (h = 0; h < height; h++)
-		free(ptr[h]);
-	free(ptr);
 }
