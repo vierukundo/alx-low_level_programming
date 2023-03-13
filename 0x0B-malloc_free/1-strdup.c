@@ -7,25 +7,27 @@
  */
 char *_strdup(char *str)
 {
-	int i, len;
+	int org_size;
 
-	char *ptr;
+	static char *dup;
 
-	len = 0;
-	if (str == NULL)
-		return (NULL);
-	while (*str != '\0')
+	char *dup_offset;
+
+	org_size = 0;
+	while (str[org_size])
 	{
-		len++;
+		org_size++;
+	}
+	dup = (char *)malloc(sizeof(char) * (org_size + 1));
+	if (dup == NULL)
+		return ((char *)NULL);
+	dup_offset = dup;
+	while (*str)
+	{
+		*dup_offset = *str;
+		dup_offset++;
 		str++;
 	}
-	ptr = (char *)malloc(sizeof(char) * (len + 1));
-	if (ptr == NULL)
-		return (NULL);
-	for (i = 0; i < len; i++)
-	{
-		ptr[i] = str[i];
-	}
-	ptr[i] = '\0';
-	return (ptr);
+	*dup_offset = '\0';
+	return (dup);
 }
