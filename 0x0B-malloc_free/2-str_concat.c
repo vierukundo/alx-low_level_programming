@@ -23,7 +23,7 @@ char *str_concat(char *s1, char *s2)
 	s2_size = 0;
 	while (s2[s2_size])
 		s2_size++;
-	conc = (char *)malloc(sizeof(char) * (s2_size + 2 + s1_size));
+	conc = (char *)malloc(sizeof(char) * (s2_size + 1 + s1_size));
 	if (conc == NULL)
 		return (NULL);
 	concanated = conc;
@@ -33,8 +33,6 @@ char *str_concat(char *s1, char *s2)
 		concanated++;
 		s1++;
 	}
-	*concanated = 32;
-	concanated++;
 	while (*s2)
 	{
 		*concanated = *s2;
