@@ -13,6 +13,8 @@ char *_strdup(char *str)
 
 	char *dup_offset;
 
+	if (str == NULL)
+		return (NULL);
 	org_size = 0;
 	while (str[org_size])
 	{
