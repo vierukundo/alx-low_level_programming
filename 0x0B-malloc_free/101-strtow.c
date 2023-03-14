@@ -39,7 +39,7 @@ char **strtow(char *str)
 	if (str == NULL)
 		return (NULL);
 	c = allocate_row(str);
-	p = (char **)malloc(sizeof(char *) * c + 1);
+	p = (char **)malloc(sizeof(char *) * (c + 1));
 	if (p == NULL)
 		return (NULL);
 	ptr = p;
@@ -53,7 +53,7 @@ char **strtow(char *str)
 			}
 			if (j < c)
 			{
-				ptr[j] = (char *)malloc(sizeof(char) * i + 1);
+				ptr[j] = (char *)malloc(sizeof(char) * (i + 1));
 				j++;
 			}
 		}
