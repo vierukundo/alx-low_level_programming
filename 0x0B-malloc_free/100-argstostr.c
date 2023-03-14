@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * str-length - calculate the string length
+ * str_length - calculate the string length
  * @ac: argement count
  * @av: array
  * Return: lenght
