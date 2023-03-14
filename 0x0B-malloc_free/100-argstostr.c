@@ -1,5 +1,29 @@
 #include "main.h"
 /**
+ * str-length - calculate the string length
+ * @ac: argement count
+ * @av: array
+ * Return: lenght
+ */
+int str_length(int ac, char **av)
+{
+	int r, len = 0;
+
+	char *str;
+
+	for (r = 0; r < ac; r++)
+	{
+		str = av[r];
+		while (*str != '\0')
+		{
+			len++;
+			str++;
+		}
+		len++;
+	}
+	return (len);
+}
+/**
  * argstostr - converts arguments to string
  * @ac: arguments count
  * @av: array of pointers to arguments
@@ -13,20 +37,11 @@ char *argstostr(int ac, char **av)
 
 	static char *p;
 
-	int r, i, len = 0;
+	int i, len, r;
 
 	if (ac == 0)
 		return (NULL);
-	for (r = 0; r < ac; r++)
-	{
-		str = av[r];
-		while (*str != '\0')
-		{
-			len++;
-			str++;
-		}
-		len++;
-	}
+	len = str_length(ac, av);
 	p = (char *)malloc(sizeof(char) * len + 1);
 	if (p == NULL)
 		return (NULL);
