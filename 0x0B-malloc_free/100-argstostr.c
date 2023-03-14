@@ -41,6 +41,12 @@ char *argstostr(int ac, char **av)
 			str++;
 		}
 		*ptr = '\n';
+		if (i < len - 1)
+		{
+			ptr++;
+			i++;
+		}
+
 	}
 	return (p);
 }
