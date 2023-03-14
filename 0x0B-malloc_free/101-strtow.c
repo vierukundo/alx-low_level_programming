@@ -1,79 +1,69 @@
+#include <stdlib.h>
 #include "main.h"
 /**
- * allocate_row - allocates memory for row
- * @str: string
- * Return: number of rows
+ * count_word - helper function to count the number of words in a string
+ * @s: string to evaluate
+ * Return: number of words
  */
-int allocate_row(char *str)
+int count_word(char *s)
 {
-	int i, c = 0;
+	int flag, c, w;
 
-	for (; *str != '\0';)
+	flag = 0;
+	w = 0;
+	for (c = 0; s[c] != '\0'; c++)
 	{
-		if (*str != 32)
+		if (s[c] == ' ')
+			flag = 0;
+		else if (flag == 0)
 		{
-			for (i = 0; *str != 32 && *str != '\0'; i++)
-			{
-				str = str + i;
-			}
-			c += 1;
+			flag = 1;
+			w++;
 		}
-		str++;
 	}
-	return (c);
+	return (w);
 }
 /**
- * strtow - The function returns a pointer to
- * an array of words in string
- * @str: string
- * Return: array of words
+ * **strtow - splits a string into words
+ * @str: string to split
+ * Return: pointer to an array of strings (Success)
+ * or NULL (Error)
  */
 char **strtow(char *str)
 {
-	int i, c = 0, j = 0, r = 0;
+	char **matrix, *tmp;
 
-	char **ptr;
+	int i, k = 0, len = 0, words, c = 0, start, end;
 
-	static char **p;
-
-	if (str == NULL)
+	while (*(str + len))
+		len++;
+	words = count_word(str);
+	if (words == 0)
 		return (NULL);
-	c = allocate_row(str);
-	p = (char **)malloc(sizeof(char *) * (c + 1));
-	if (p == NULL)
+	matrix = (char **) malloc(sizeof(char *) * (words + 1));
+	if (matrix == NULL)
 		return (NULL);
-	ptr = p;
-	for (; *str != '\0';)
+	for (i = 0; i <= len; i++)
 	{
-		if (*str != 32)
+		if (str[i] == ' ' || str[i] == '\0')
 		{
-			for (i = 0; *str != 32 && *str != '\0'; i++)
+			if (c)
 			{
-				str = str + i;
-			}
-			if (j < c)
-			{
-				ptr[j] = (char *)malloc(sizeof(char) * (i + 1));
-				j++;
+				end = i;
+				tmp = (char *) malloc(sizeof(char) * (c + 1));
+				if (tmp == NULL)
+					return (NULL);
+				while (start < end)
+				*tmp++ = str[start++];
+				*tmp = '\0';
+				matrix[k] = tmp - c;
+				k++;
+				c = 0;
 			}
 		}
-		str++;
+		else if (c++ == 0)
+			start = i;
 	}
-	for (; *str != '\0';)
-	{
-		if (*str != 32)
-		{
-			for (i = 0; *str != 32 && *str != '\0'; i++)
-			{
-				str = str + i;
-				if (r < c)
-					ptr[r][i] = *str;
-			}
-			ptr[r][i] = '\0';
-			r++;
-		}
-		str++;
-	}
-	ptr[c] = NULL;
-	return (p);
+	matrix[k] = NULL;
+	return (matrix);
 }
