@@ -74,5 +74,6 @@ char **strtow(char *str)
 		}
 		str++;
 	}
+	ptr[c] = NULL;
 	return (p);
 }
