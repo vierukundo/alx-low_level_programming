@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 /**
  * string_nconcat - function that concatenates two strings
  * @s1: string one
@@ -18,9 +19,10 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	{
 		s2 = "";
 	}
-	if (n >= (sizeof(s2) - 1))
-		n = sizeof(s2) - 1;
-	p = malloc(sizeof(s1) + n);
+	if (n < strlen(s2))
+		p = malloc(sizeof(s1) + n);
+	else
+		p = malloc(sizeof(s1) + strlen(s2));
 	if (p == NULL)
 		return (NULL);
 	ptr = p;
