@@ -23,61 +23,27 @@ int check_num(char *str)
 	return (1);
 }
 /**
- * num_one - array of num1
- * @str: arguments
- * Return: array
- */
-int *num_one(char *str)
-{
-	int num1[];
-
-	unsigned int i;
-
-	for (i = 0; i < strlen(str); i++)
-		num1[i] = atoi(str[i]);
-	return (num1);
-}
-/**
- * num_two - array of num1
- * @str: arguments
- * Return: array
- */
-int *num_two(char *str)
-{
-	int num2[];
-
-	unsigned int i;
-
-	for (i = 0; i < strlen(str); i++)
-		num2[i] = atoi(str[i]);
-	return (num2);
-}
-/**
  * multiply - multiply two numbers
- * @argv: arguments
+ * @num1: arguments
+ * @num2: arguments
  * Return: array of result
  */
-int *multiply(char *argv[])
+int *multiply(char *num1, char *num2)
 {
-	int num1[];
-
-	int num2[];
-
-	int mul[];
+	static int *mul;
 
 	unsigned int i, j, num = 0, r = 0, product = 1;
 
-	num1 = num_one(argv[1]);
-	num2 = num_two(argv[2]);
-	if (sizeof(num1) > sizeof(num2))
+	mul = malloc((strlen(num1) + strlen(num2) + 50) * sizeof(int));
+	if (strlen(num1) > strlen(num2))
 	{
-		for (i = 0; i < sizeof(num2); i++)
+		for (i = 0; i < strlen(num2); i++)
 		{
-			for (j = 0; j < sizeof(num1); j++)
+			for (j = 0; j < strlen(num1); j++)
 			{
-				if (i < sizeof(num2) - 2)
+				if (i < strlen(num2) - 1)
 				{
-					product = num1[j] * num2[i] + r;
+					product = (num1[j] - 48) * (num2[i] - 48) + r;
 					num = product % 10;
 					r = product / 10;
 				}
@@ -89,13 +55,13 @@ int *multiply(char *argv[])
 			}
 		}
 	}
-	for (i = 0; i < sizeof(num1); i++)
+	for (i = 0; i < strlen(num1); i++)
 	{
-		for (j = 0; j < sizeof(num2); j++)
+		for (j = 0; j < strlen(num2); j++)
 		{
-			if (i < sizeof(num1) - 2)
+			if (i < strlen(num1) - 1)
 			{
-				product = num2[j] * num1[i] + r;
+				product = (num1[i] - 48) * (num2[j] - 48) + r;
 				num = product % 10;
 				r = product / 10;
 				mul[i + j] += num;
@@ -116,13 +82,14 @@ int *multiply(char *argv[])
  */
 int *add_product(char *argv[])
 {
-	int result[];
+	int *result;
 
-	int mul[];
+	static int *mul;
 
 	unsigned int i, sum = 0, num = 0, remainder = 0;
 
-	result = multiply(argv);
+	result = multiply(argv[1], argv[2]);
+	mul = malloc((sizeof(result) + 100) * sizeof(int));
 	for (i = 0; i < sizeof(result); i++)
 	{
 		if (i < sizeof(result) - 2)
@@ -137,6 +104,7 @@ int *add_product(char *argv[])
 		}
 		mul[i] = num;
 	}
+	return (mul);
 }
 /**
  * main - Entry point
@@ -146,18 +114,19 @@ int *add_product(char *argv[])
  */
 int main(int argc, char *argv[])
 {
-	int mul[];
+	int *mul;
 
 	unsigned int i;
 
-	int result[];
+	int *result;
 
 	if (argc < 3 || argc > 3)
 	{
 		printf("%s\n", "Error");
 		exit(98);
 	}
-	mul = add_product(argv);
+	result = add_product(argv);
+	mul = malloc((sizeof(result) + 50) * sizeof(int));
 	for (i = 1; i < 3; i++)
 	{
 		if (!check_num(argv[i]))
@@ -175,5 +144,6 @@ int main(int argc, char *argv[])
 		printf("%d", mul[i]);
 	}
 	printf("\n");
+	free(mul);
 	return (0);
 }
