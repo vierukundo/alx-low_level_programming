@@ -80,6 +80,8 @@ int main(int argc, char *argv[])
 	i = 0;
 	while (i < len - 1 && result[i] == 0)
 		i++;
+	if (i == len - 1)
+		_putchar('0');
 	for (; i < len - 1; i++)
 		_putchar(result[i] + '0');
 	_putchar('\n');
