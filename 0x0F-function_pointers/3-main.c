@@ -5,7 +5,7 @@
  * @argv: array of strings
  * Return: nothing
  */
-int main(int __attribute__ ((unused)) argc, char **argv)
+int main(int argc, char **argv)
 {
 	int (*func)(int num1, int num2);
 
