@@ -20,10 +20,10 @@ int main(int argc, char **argv)
 	}
 	operator = argv[2];
 	func = get_op_func(operator);
-	if (func == NULL)
+	if (func == NULL || operator[1] != '\0')
 	{
 		printf("%s\n", "Error");
-		exit(98);
+		exit(99);
 	}
 	num1 = atoi(argv[1]);
 	num2 = atoi(argv[3]);
