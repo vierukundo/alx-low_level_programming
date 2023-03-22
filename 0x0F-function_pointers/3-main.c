@@ -9,12 +9,18 @@ int main(int argc, char **argv)
 {
 	int (*func)(int num1, int num2);
 
-	char *operator = argv[2];
+	char *operator;
 
 	int num1, num2, calc;
 
+	if (argc != 4)
+	{
+		printf("%s\n", "Error");
+		exit(98);
+	}
+	operator = argv[2];
 	func = get_op_func(operator);
-	if (argc != 4 || func == NULL)
+	if (func == NULL)
 	{
 		printf("%s\n", "Error");
 		exit(98);
