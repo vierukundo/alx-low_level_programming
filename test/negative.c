@@ -94,8 +94,27 @@ char *convert_back_to_10(int m, int bits, int upper)
 	free(str);
 	return (p);
 }
+/**
+ * unsigned_int - prints unsigned int
+ * @n: number to print
+ * Return: unsigned type of number
+ */
+unsigned int unsigned_int(int n)
+{
+	unsigned int m = 1, i, number, num = 0;
+
+	if (n >= 0)
+		return ((unsigned int)n);
+	number = -n;
+	for (i = 0; i < 32; i++)
+		m = m * 2;
+	num = m - number;
+	return (num);
+}
 int main(void)
 {
+	unsigned int u;
+
 	char *ptr, *p;
 
 	int i = 0, j, num = -500;
@@ -108,7 +127,13 @@ int main(void)
 	p = malloc(11 - i);
 	for (j = 0; j < 11 - i; j++)
 		p[j] = ptr[i + j];
-	printf("%s, normal: %X\n", p, num);
+	printf("%s, normal: %X its unsigned mode %u\n", p, num, num);
+	u = unsigned_int(num);
+	printf("%u\n", u);
+	u = unsigned_int(500);
+	printf("%u\n", u);
+	u = 4294966796;
+	printf("%i, %d\n", u, u);
 	free(ptr);
 	free(p);
 	return (0);
