@@ -54,11 +54,21 @@ char hex_value(int n, int upper)
 		return(n + 55);
 	return (n + 87);
 }
+/**
+ * convert_back_to_10 - provides real number
+ * @m: number
+ * @bits: group of bits. 2 for binary, 3 for octal
+ * and 4 for hexadecimal
+ * @upper: 1 for uppercase hexadecimal. 0 otherwise
+ * Return: converted string
+ */
 char *convert_back_to_10(int m, int bits, int upper)
 {
 	int n, dec, num, base, i, len, j;
 	char *str, *p;
 	str = convert_negative(m);
+	if (bits == 2)
+		return (str);
 	p = malloc(12);
 	if (p == NULL)
 		exit(1);
@@ -111,21 +121,35 @@ unsigned int unsigned_int(int n)
 	num = m - number;
 	return (num);
 }
+/**
+ * _strlen - provides string length
+ * @str: string
+ * Return: length
+ */
+int _strlen(char *str)
+{
+	int len = 0;
+
+	while(str[len])
+		len++;
+	return (len);
+}
 int main(void)
 {
 	unsigned int u;
 
 	char *ptr, *p;
 
-	int i = 0, j, num = -500;
+	int i = 0, j, num = -45, len;
 
-	ptr = convert_back_to_10(-num, 4, 1);
-	while (i < 11 && ptr[i] == '0')
+	ptr = convert_back_to_10(-num, 2, 1);
+	len = _strlen(ptr);
+	while (i < len && ptr[i] == '0')
 		i++;
-	if (i == 11)
+	if (i == len)
 		printf("%c\n", '0');
-	p = malloc(11 - i);
-	for (j = 0; j < 11 - i; j++)
+	p = malloc(len - i);
+	for (j = 0; j < len - i; j++)
 		p[j] = ptr[i + j];
 	printf("%s, normal: %X its unsigned mode %u\n", p, num, num);
 	u = unsigned_int(num);
