@@ -22,7 +22,7 @@ int get_bit(unsigned long int n, unsigned int index)
 				return (1);
 			last++;
 		}
-		else if (i == idex && last)
+		else if (i == idex)
 			return (0);
 		i--;
 	}
