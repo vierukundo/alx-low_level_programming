@@ -7,14 +7,16 @@
  */
 int clear_bit(unsigned long int *n, unsigned int index)
 {
-	unsigned long int i = 2147483648, idex = 31, m = *n;
+	unsigned long int mask, m = *n;
 
-	while (i > 0)
+	int idex = index, i = 63;
+
+	while (i >= 0)
 	{
-		if (idex == index && ((*n) & i))
-			*n = (*n) ^ i;
-		i >>= 1;
-		idex--;
+		mask = 1 << i;
+		if (idex == i && ((*n) & mask))
+			*n = (*n) ^ mask;
+		i--;
 	}
 	if (m == *n)
 		return (-1);
