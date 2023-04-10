@@ -34,13 +34,13 @@ void _cp(const char *file_from, const char *file_to)
 		exit(98);
 	}
 	dest_fd = open(file_to, O_CREAT | O_RDWR | O_TRUNC, 0664);
-	if (dest_fd == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-		exit(99);
-	}
 	while (src_read)
 	{
+		if (dest_fd == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+			exit(99);
+		}
 		Buffer = malloc(1024);
 		if (!Buffer)
 			return;
@@ -49,6 +49,7 @@ void _cp(const char *file_from, const char *file_to)
 		free(Buffer);
 		if (dest_write == -1 || src_read == -1)
 			exit(-1);
+		dest_fd = open(file_to, O_WRONLY | O_APPEND);
 	}
 	close_file(src_fd);
 	close_file(dest_fd);
