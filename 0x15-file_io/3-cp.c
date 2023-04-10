@@ -42,12 +42,14 @@ void _cp(const char *file_from, const char *file_to)
 	while (src_read)
 	{
 		Buffer = malloc(1024);
+		if (!Buffer)
+			return;
 		src_read = read(src_fd, Buffer, 1024);
 		dest_write = write(dest_fd, Buffer, src_read);
 		free(Buffer);
+		if (dest_write == -1 || src_read == -1)
+			exit(-1);
 	}
-	if (dest_write == -1 || src_read == -1)
-		exit(-1);
 	close_file(src_fd);
 	close_file(dest_fd);
 }
