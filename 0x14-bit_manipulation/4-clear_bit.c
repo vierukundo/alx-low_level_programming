@@ -11,18 +11,13 @@ int clear_bit(unsigned long int *n, unsigned int index)
 
 	int i = 63, j = index;
 
-	if (!n)
-		return (-1);
 	while (i >= 0)
 	{
 		mask = 1 << i;
 		if (i == j)
 		{
-			if ((*n) & mask)
-			{
-				*n = (*n) ^ mask;
-				return (1);
-			}
+			*n = *n & (~mask);
+			return (1);
 		}
 		i--;
 	}
