@@ -35,8 +35,7 @@ int main(int argc, char **argv)
 	read_bytes = read(file_from, buffer, 1024);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
-	while (read_bytes > 0)
-	{
+	do {
 		if (file_from == -1 || read_bytes == -1)
 		{
 			dprintf(STDERR_FILENO,
@@ -55,7 +54,7 @@ int main(int argc, char **argv)
 		read_bytes = read(file_from, buffer, 1024);
 		file_to = open(argv[2], O_WRONLY | O_APPEND);
 
-	};
+	} while (read_bytes > 0);
 
 	free(buffer);
 	close_fd(file_from);
