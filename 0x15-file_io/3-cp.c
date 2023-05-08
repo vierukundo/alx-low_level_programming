@@ -29,10 +29,10 @@ char *create_buffer(char *file)
  */
 void close_fd(int fd)
 {
-	int return_value;
+	int ret;
 
-	return_value = close(fd);
-	if (return_value == -1)
+	ret = close(fd);
+	if (ret == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
