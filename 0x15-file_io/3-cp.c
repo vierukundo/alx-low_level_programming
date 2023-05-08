@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * close_fd - a function that closes file descriptors.
- * @fd: The file descripto.
+ * @fd: The file descriptor.
  */
 void close_fd(int fd)
 {
@@ -15,9 +15,9 @@ void close_fd(int fd)
 	}
 }
 /**
- * main - Copies the contents of a file to another file.
+ * main - program that copies the contents of a file to another file.
  * @argc: The number of arguments
- * @argv: An array of pointers to the arguments.
+ * @argv: array of pointers to the arguments.
  * Return: 0 on success.
  */
 int main(int argc, char *argv[])
@@ -33,8 +33,7 @@ int main(int argc, char *argv[])
 	buffer = malloc(sizeof(char) * 1024);
 	if (buffer == NULL)
 	{
-		dprintf(STDERR_FILENO,
-			"Error: Can't write to %s\n", argv[2]);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
 	}
 	fd1 = open(argv[1], O_RDONLY);
