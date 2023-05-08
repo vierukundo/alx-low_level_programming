@@ -22,9 +22,8 @@ void close_fd(int fd)
  */
 int main(int argc, char **argv)
 {
-	/*int fd1, fd2, written_bytes = 0, read_bytes = 0;*/
+	int file_from, file_to, read_bytes, written_bytes;
 
-	int file_from, file_to, r, w;
 	char *buffer = malloc(sizeof(char) * 1024);
 
 	if (argc != 3)
@@ -33,29 +32,30 @@ int main(int argc, char **argv)
 		exit(97);
 	}
 	file_from = open(argv[1], O_RDONLY);
-	r = read(file_from, buffer, 1024);
+	read_bytes = read(file_from, buffer, 1024);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
-	do {
-		if (file_from == -1 || r == -1)
+	while (read_bytes > 0)
+	{
+		if (file_from == -1 || read_bytes == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't read from file %s\n", argv[1]);
 			free(buffer);
 			exit(98);
 		}
-		w = write(file_to, buffer, r);
-		if (file_to == -1 || w == -1)
+		written_bytes = write(file_to, buffer, read_bytes);
+		if (file_to == -1 || written_bytes == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't write to %s\n", argv[2]);
 			free(buffer);
 			exit(99);
 		}
-		r = read(file_from, buffer, 1024);
+		read_bytes = read(file_from, buffer, 1024);
 		file_to = open(argv[2], O_WRONLY | O_APPEND);
 
-	} while (r > 0);
+	};
 
 	free(buffer);
 	close_fd(file_from);
