@@ -26,6 +26,11 @@ int main(int argc, char **argv)
 
 	char *buffer = malloc(sizeof(char) * 1024);
 
+	if (buffer == NULL)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
@@ -34,7 +39,6 @@ int main(int argc, char **argv)
 	file_from = open(argv[1], O_RDONLY);
 	read_bytes = read(file_from, buffer, 1024);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-
 	do {
 		if (file_from == -1 || read_bytes == -1)
 		{
@@ -53,9 +57,7 @@ int main(int argc, char **argv)
 		}
 		read_bytes = read(file_from, buffer, 1024);
 		file_to = open(argv[2], O_WRONLY | O_APPEND);
-
 	} while (read_bytes > 0);
-
 	free(buffer);
 	close_fd(file_from);
 	close_fd(file_to);
