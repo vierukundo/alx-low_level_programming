@@ -10,7 +10,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd, letters_read = 0, written_letters = 0;
 
-	char *buffer[1024];
+	char *buffer = malloc(sizeof(char) * letters);
 
 	if (!filename)
 		return (0);
@@ -22,5 +22,6 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (written_letters != letters_read)
 		return (0);
 	close(fd);
+	free(buffer);
 	return (written_letters);
 }
