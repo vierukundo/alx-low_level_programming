@@ -7,6 +7,7 @@
 size_t print_dlistint(const dlistint_t *h)
 {
 	const dlistint_t *head = h;
+	int nodes;
 
 	if (head == NULL)
 		return (0);
@@ -15,5 +16,5 @@ size_t print_dlistint(const dlistint_t *h)
 		printf("%d\n", head->n);
 		head = head->next;
 	}
-	return (nodes - 1);
+	return (nodes);
 }
