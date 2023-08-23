@@ -1,11 +1,7 @@
-# Variables: CC, SRC, NAME
-CC := gcc
-SRC := $(wildcard *.c)
-OBJ := $(SRC:.c=.o)  # Generate object file names from source file names
-NAME := school
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
 
 all: $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
-
-main.o: m.h
-school.o: m.h
