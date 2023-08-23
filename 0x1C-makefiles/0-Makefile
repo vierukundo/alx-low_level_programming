@@ -1,0 +1,4 @@
+# The name of the executable is school
+
+all:
+	gcc main.c school.c -o school
